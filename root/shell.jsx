@@ -1,3 +1,5 @@
+import React, {useEffect, useState} from 'react';
+
 function loadScript(path) {
   return new Promise(resolve => {
     const s = document.createElement('script');
@@ -29,4 +31,18 @@ export function loadModule({ name, moduleType }) {
     m.start?.();
     return m;
   })
+}
+
+export function MfComponent({ name, fnName = 'getComponent', moduleType = 'esm', ...rest }) {
+  const [Component, setComponent] = useState({ value: null });
+
+  useEffect(() => {
+    loadModule({ name, moduleType }).then(m => {
+      const componentFactory = m[fnName];
+      const _Component = componentFactory();
+      setComponent({ value: _Component });
+    });
+  }, []);
+
+  return Component.value && <Component.value {...rest}/>;
 }
