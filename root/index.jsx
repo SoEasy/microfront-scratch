@@ -12,6 +12,7 @@ reactRoot.render(
   </BrowserRouter>
 );
 
+window.ourMfExports = {};
 window.exports = {};
 window.module = { exports };
 

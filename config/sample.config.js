@@ -17,7 +17,8 @@ function generateConfig(dirName) {
       path: resolvePath('public', dirName),
       filename: '[name].js',
       library: {
-        type: 'umd'
+        type: 'assign',
+        name: 'window.ourMfExports["sample"]'
       }
     },
     resolve: {
