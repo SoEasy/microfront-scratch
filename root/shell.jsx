@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import * as ReactJsxRuntime from 'react/jsx-runtime';
+import * as ReactRouterDom from 'react-router-dom';
+import * as ReactRouter from 'react-router';
 
 function loadScript(path) {
   return new Promise(resolve => {
@@ -33,31 +35,46 @@ function loadAssignModule(name) {
 }
 
 export function loadModule({ name, moduleType }) {
-  let result;
-  if (moduleType === 'esm') {
-    result = window.loadEsmModule(`./${name}/index.esm.js`);
-  } else {
-    result = loadAssignModule(name);
-  }
-  return result.then(m => {
+  return loadManifest().then(manifest => {
+    if (!manifest[name]) {
+      throw new Error('Unknown name to load' + name);
+    }
+
+    if (moduleType === 'esm') {
+      return window.loadEsmModule(`./${name}/index.esm.js`);
+    } else {
+      return loadAssignModule(name);
+    }
+  }).then(m => {
     m.start?.();
     return m;
-  })
+  });
 }
 
 const externalDeps = {
-  'react': new Promise(r => {
-    window.resolveReact = () => {
-      console.log('Resolve react');
-      r(React);
-    }
-  }),
-  'react/jsx-runtime': ReactJsxRuntime
+  'react': React,
+  'react/jsx-runtime': ReactJsxRuntime,
+  'react-router-dom': ReactRouterDom,
+  'react-router': ReactRouter,
 };
 
 window.getDependency = function(name) {
   console.log('Call getDep ', name);
   return externalDeps[name];
+}
+
+let manifestCache;
+
+export function loadManifest() {
+  if (!manifestCache) {
+    manifestCache = fetch('./manifest.json').then(r => r.json()).then(
+      (manifest) => {
+        console.log(manifest);
+        return manifest;
+      }
+    );
+  }
+  return manifestCache;
 }
 
 export function MfComponent({ name, fnName = 'getComponent', moduleType = 'esm', ...rest }) {

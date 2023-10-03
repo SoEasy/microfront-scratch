@@ -5,7 +5,7 @@ function resolvePath(...args) {
 }
 
 function generateConfig(mfName, esm = false) {
-  const projectPath = resolvePath(mfName);
+  const projectPath = resolvePath();
 
   return {
     mode: 'production',
@@ -26,7 +26,8 @@ function generateConfig(mfName, esm = false) {
     },
     externals: {
       'react': 'promise window.getDependency("react")',
-      'react/jsx-runtime': 'window.getDependency("react/jsx-runtime")'
+      'react-router': 'promise window.getDependency("react-router")',
+      'react-router-dom': 'promise window.getDependency("react-router-dom")',
     },
     experiments: esm ?{
       outputModule: true

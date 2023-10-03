@@ -1,0 +1,18 @@
+{
+  "fc-button": {
+    "dirPath": "./fc-button",
+    "moduleType": "esm"
+  },
+  "core-module": {
+    "dirPath": "./core-module",
+    "moduleType": "esm"
+  },
+  "page-foo": {
+    "type": "route",
+    "path": "/bar"
+  },
+  "page-home": {
+    "type": "route",
+    "path": "/"
+  }
+}

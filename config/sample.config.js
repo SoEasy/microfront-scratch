@@ -7,4 +7,10 @@ module.exports = [
   generateConfig('sample2', false),
   generateConfig('fc-button', true),
   generateConfig('fc-button', false),
+  generateConfig('core-module', true),
+  generateConfig('core-module', false),
+  generateConfig('page-home', true),
+  generateConfig('page-home', false),
+  generateConfig('page-foo', true),
+  generateConfig('page-foo', false),
 ]
