@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client';
 import { App } from './app';
 import { BrowserRouter } from "react-router-dom";
 import React from 'react';
+import {loadModule} from "../shell";
 
 const rootEl = document.querySelector('#root');
 const reactRoot = createRoot(rootEl);
@@ -12,17 +13,4 @@ reactRoot.render(
   </BrowserRouter>
 );
 
-// window.ourMfExports = {};
-// window.exports = {};
-// window.module = { exports };
-//
-// const s = document.createElement('script');
-// s.setAttribute('src', './sample/index.js');
-// s.setAttribute('type', 'module');
-// s.onload = () => {
-//   console.log('Loaded');
-// }
-// document.head.append(s);
-
-
-window.loadEsmModule('./sample/index.js').then(m => console.log(m));
+loadModule({ name: 'sample', moduleType: 'assign' }).then(console.log);
