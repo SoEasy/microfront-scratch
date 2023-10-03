@@ -17,9 +17,11 @@ function generateConfig(dirName) {
       path: resolvePath('public', dirName),
       filename: '[name].js',
       library: {
-        type: 'assign',
-        name: 'window.ourMfExports["sample"]'
+        type: 'module'
       }
+    },
+    experiments: {
+      outputModule: true
     },
     resolve: {
       extensions: ['.js', '.jsx'],

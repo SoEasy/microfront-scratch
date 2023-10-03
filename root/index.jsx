@@ -12,13 +12,17 @@ reactRoot.render(
   </BrowserRouter>
 );
 
-window.ourMfExports = {};
-window.exports = {};
-window.module = { exports };
+// window.ourMfExports = {};
+// window.exports = {};
+// window.module = { exports };
+//
+// const s = document.createElement('script');
+// s.setAttribute('src', './sample/index.js');
+// s.setAttribute('type', 'module');
+// s.onload = () => {
+//   console.log('Loaded');
+// }
+// document.head.append(s);
 
-const s = document.createElement('script');
-s.setAttribute('src', './sample/index.js');
-s.onload = () => {
-  console.log('Loaded');
-}
-document.head.append(s);
+
+window.loadEsmModule('./sample/index.js').then(m => console.log(m));
