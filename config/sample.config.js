@@ -16,6 +16,9 @@ function generateConfig(dirName) {
       clean: true,
       path: resolvePath('public', dirName),
       filename: '[name].js',
+      library: {
+        type: 'umd'
+      }
     },
     resolve: {
       extensions: ['.js', '.jsx'],

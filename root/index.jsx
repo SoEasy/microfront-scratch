@@ -11,3 +11,13 @@ reactRoot.render(
     <App/>
   </BrowserRouter>
 );
+
+window.exports = {};
+window.module = { exports };
+
+const s = document.createElement('script');
+s.setAttribute('src', './sample/index.js');
+s.onload = () => {
+  console.log('Loaded');
+}
+document.head.append(s);
