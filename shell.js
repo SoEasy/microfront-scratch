@@ -19,9 +19,14 @@ function loadAssignModule(name) {
 }
 
 export function loadModule({ name, moduleType }) {
+  let result;
   if (moduleType === 'esm') {
-    return window.loadEsmModule(`./${name}/index.esm.js`);
+    result = window.loadEsmModule(`./${name}/index.esm.js`);
   } else {
-    return loadAssignModule(name);
+    result = loadAssignModule(name);
   }
+  return result.then(m => {
+    m.start?.();
+    return m;
+  })
 }

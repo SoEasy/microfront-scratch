@@ -94,6 +94,7 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   B: () => (/* binding */ start),
 /* harmony export */   X: () => (/* binding */ getComponent)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(294);
@@ -103,7 +104,11 @@ function getComponent() {
   console.log(react__WEBPACK_IMPORTED_MODULE_0__);
   return 123;
 }
+function start() {
+  console.log('Start sample MF');
+}
 })();
 
 var __webpack_exports__getComponent = __webpack_exports__.X;
-export { __webpack_exports__getComponent as getComponent };
+var __webpack_exports__start = __webpack_exports__.B;
+export { __webpack_exports__getComponent as getComponent, __webpack_exports__start as start };

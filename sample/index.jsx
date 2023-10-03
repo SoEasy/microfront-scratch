@@ -5,3 +5,7 @@ export function getComponent() {
   console.log(React);
   return 123;
 }
+
+export function start() {
+  console.log('Start sample MF');
+}
