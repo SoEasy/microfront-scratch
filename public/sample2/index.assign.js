@@ -1,7 +1,7 @@
 // runtime can't be in strict mode because a global variable is assign and maybe created.
-(self["webpackChunksample"] = self["webpackChunksample"] || []).push([[826],{
+(self["webpackChunksample2"] = self["webpackChunksample2"] || []).push([[826],{
 
-/***/ 75:
+/***/ 942:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -11,10 +11,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(294);
 
-console.log('sample microfront');
+console.log('sample2 microfront');
 function getComponent() {
   console.log(react__WEBPACK_IMPORTED_MODULE_0__);
-  return 123;
+  return 1234;
 }
 
 /***/ }),
@@ -69,7 +69,7 @@ if (true) {
 },
 /******/ __webpack_require__ => { // webpackRuntimeModules
 /******/ var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-/******/ var __webpack_exports__ = (__webpack_exec__(75));
-/******/ window.ourMfExports["sample"] = __webpack_exports__;
+/******/ var __webpack_exports__ = (__webpack_exec__(942));
+/******/ window.ourMfExports["sample2"] = __webpack_exports__;
 /******/ }
 ]);

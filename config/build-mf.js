@@ -21,7 +21,8 @@ function generateConfig(mfName, esm = false) {
       } : {
         type: 'assign',
         name: `window.ourMfExports["${mfName}"]`
-      }
+      },
+      uniqueName: mfName
     },
     experiments: esm ?{
       outputModule: true
@@ -32,6 +33,7 @@ function generateConfig(mfName, esm = false) {
     },
     optimization: {
       minimize: false,
+      runtimeChunk: !esm
     },
     module: {
       rules: [
