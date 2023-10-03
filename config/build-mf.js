@@ -25,7 +25,7 @@ function generateConfig(mfName, esm = false) {
       uniqueName: mfName
     },
     externals: {
-      'react': 'window.getDependency("react")',
+      'react': 'promise window.getDependency("react")',
       'react/jsx-runtime': 'window.getDependency("react/jsx-runtime")'
     },
     experiments: esm ?{

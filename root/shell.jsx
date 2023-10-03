@@ -45,12 +45,19 @@ export function loadModule({ name, moduleType }) {
   })
 }
 
+const externalDeps = {
+  'react': new Promise(r => {
+    window.resolveReact = () => {
+      console.log('Resolve react');
+      r(React);
+    }
+  }),
+  'react/jsx-runtime': ReactJsxRuntime
+};
+
 window.getDependency = function(name) {
   console.log('Call getDep ', name);
-  return {
-    'react': React,
-    'react/jsx-runtime': ReactJsxRuntime
-  }[name];
+  return externalDeps[name];
 }
 
 export function MfComponent({ name, fnName = 'getComponent', moduleType = 'esm', ...rest }) {
@@ -58,11 +65,12 @@ export function MfComponent({ name, fnName = 'getComponent', moduleType = 'esm',
 
   useEffect(() => {
     loadModule({ name, moduleType }).then(m => {
+      console.log('Module loaded', name);
       const componentFactory = m[fnName];
       const _Component = componentFactory();
       setComponent({ value: _Component });
     });
   }, []);
 
-  return Component.value && <Component.value {...rest}/>;
+  return !Component.value ? <>Loading</> : <Component.value {...rest}/>;
 }
