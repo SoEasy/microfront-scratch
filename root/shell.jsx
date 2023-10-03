@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import * as ReactJsxRuntime from 'react/jsx-runtime';
 
 function loadScript(path) {
   return new Promise(resolve => {
@@ -42,6 +43,14 @@ export function loadModule({ name, moduleType }) {
     m.start?.();
     return m;
   })
+}
+
+window.getDependency = function(name) {
+  console.log('Call getDep ', name);
+  return {
+    'react': React,
+    'react/jsx-runtime': ReactJsxRuntime
+  }[name];
 }
 
 export function MfComponent({ name, fnName = 'getComponent', moduleType = 'esm', ...rest }) {
