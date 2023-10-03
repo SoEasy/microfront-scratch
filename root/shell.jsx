@@ -4,20 +4,31 @@ function loadScript(path) {
   return new Promise(resolve => {
     const s = document.createElement('script');
     s.setAttribute('src', path);
-    s.onload = () => { resolve(); }
+    s.onload = () => {
+      document.head.removeChild(s);
+      resolve();
+    }
     document.head.append(s);
   });
 }
 
+const Cache = {
+  // mfName: moduleInstance
+};
+
 function loadAssignModule(name) {
   window.ourMfExports = window.ourMfExports || {};
 
-  return Promise.all([
-    loadScript(`./${name}/index.assign.js`),
-    loadScript(`./${name}/runtime~index.assign.js`),
-  ]).then(() => {
-    return window.ourMfExports[name];
-  });
+  if (!Cache[name]) {
+    Cache[name] = Promise.all([
+      loadScript(`./${name}/index.assign.js`),
+      loadScript(`./${name}/runtime~index.assign.js`),
+    ]).then(() => {
+      return window.ourMfExports[name];
+    });
+  }
+
+  return Cache[name];
 }
 
 export function loadModule({ name, moduleType }) {

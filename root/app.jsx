@@ -11,7 +11,9 @@ function Home() {
 
 export function App() {
   return <>
-    <MfComponent name="fc-button">Hello Microfront</MfComponent>
+    <MfComponent name="fc-button" key="f1" moduleType="assign">Hello Microfront</MfComponent>
+    <MfComponent name="fc-button" key={"f2"} moduleType="assign">Hello Microfront1</MfComponent>
+    <MfComponent name="fc-button" key={"f3"} moduleType="assign">Hello Microfront2</MfComponent>
     <Link to="/">Home</Link>
     <Link to="/foo">Foo</Link>
 
